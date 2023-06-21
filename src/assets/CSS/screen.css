@@ -1,0 +1,22 @@
+#screen{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+#left{
+    height: 100%;
+    width: 49%;
+    border: 1px solid black;
+    
+}
+#right {
+    height: 99%;
+    width: 49%;
+    border: 1px solid black;
+    
+}

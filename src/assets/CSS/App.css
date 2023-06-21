@@ -11,15 +11,13 @@
     height: 50%;
     width: 90%;
     margin: 22px 10px 10px 14px;
-    background-color: aliceblue;
-    border-radius: 5px;
+    
+    border-radius: 10px;
+
 }
 
 .ipod-actions{
     height: 40%;
-    width: 70%;
-    margin: 12px 45px 0px;
-    /* background-color: rgb(33, 44, 54); */
-    border: 2px solid black;
-    border-radius: 5px;
+    width: 75%;
+    margin: 12px 35px 0px;
 }
