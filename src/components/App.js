@@ -1,15 +1,21 @@
+// Importing libraries,Stylesheets,components
 import '../assets/CSS/App.css';
 import '../assets/CSS/screen.css';
 import Body from './Body';
 import { useEffect,useState } from 'react';
 import ZingTouch from 'zingtouch';
 
-let index= 0,
-currentAngle = 0,
-selectItem,
-visibility = true;
 
+// Initializing global variables
+let index= 0,
+    currentAngle = 0,
+    selectItem,
+    visibility = true;
+
+// Runs the App
 function App() {
+
+  // Initializing the data
   const [list,setList] = useState([
     {
       listItem: "Songs",
@@ -37,15 +43,23 @@ function App() {
     },
   ]);
 
+  // To show the selected options
   let [activeItem, setActiveItem] = useState([]);
 
+  // To use rotate from zingtouch
   useEffect(() => {
+
+    // Choosing the ragion to be monitered
     let buttonWheel = document.getElementById("outer-circle");
     let active = new ZingTouch.Region(buttonWheel);
-    // console.log(active);
+
+    // Binding it to rotate 
     active.bind(buttonWheel,'rotate',function(e){
+      // Keeping track of the angles
        currentAngle += Math.floor(e.detail.distanceFromLast);
-       console.log(currentAngle);
+      //  console.log(currentAngle);
+
+      // if clockwise
       if (currentAngle > 3) {
         setList((prevList) => {
           return prevList.map((item) => {
@@ -60,11 +74,14 @@ function App() {
         index++;
         currentAngle = 0;
 
+        // Reached the end of the list
         if(index === list.length){
           index = 0;
         }
+        // if anticlockwise
       } else if (currentAngle < -5){
         index--;
+        // Reache the begining of the list
         if(index < 0){
           index = list.length;
         }
@@ -83,10 +100,13 @@ function App() {
     },false);
   }, []);
 
+  // For selected a desired options an viewing it
   const handleSelect = () => {
+    // Fecting the desired option
     selectItem = list.filter((item) => item.state === true);
     console.log("state ",selectItem);
     const title = selectItem[0].listItem;
+    // initializing the desired options 
     if (title === "Songs") {
       setActiveItem({
         ...selectItem,
@@ -116,6 +136,7 @@ function App() {
     visibility = false;
   };
 
+  // Viewing the seleted options
   const handleMenu = () => {
     visibility = true;
     setActiveItem([]);
@@ -124,18 +145,22 @@ function App() {
 
   return (
     <>
+    {/* App Structure */}
     <div className='App'>
+      {/* Top section */}
     <div className="screen">
         {/* side-menu section */}
-        <div
-          style={!visibility ? { display: "none" } : {}}
-          className="side-menu"
-        >
+        <div 
+        style={!visibility ? { display: "none" } : {}} 
+        className="side-menu" >
+
           {list.map((item) => (
-            <li key={item.id} className={item.state ? "active" : ""}>
-              {item.listItem}
-            </li>
-          ))}
+              <li 
+              key={item.id} 
+              className={item.state ? "active" : ""}>
+                {item.listItem}
+              </li>
+            ))}
         </div>
 
         {/* display section */}
@@ -145,6 +170,7 @@ function App() {
         </div>
       </div>
 
+      {/* Bottom section */}
       <div className='ipod-actions'>
         <Body handleSelect={handleSelect} handleMenu={handleMenu}/>
       </div>
