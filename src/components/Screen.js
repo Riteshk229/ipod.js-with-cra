@@ -1,20 +1,36 @@
 import React from "react";
 import '../assets/CSS/screen.css'
-class Screen extends React.Component{
-    render(){
+function Screen (props){
+    const {list, activeItem} = props;
+    console.log(activeItem);
+    if(Object.keys(activeItem)===0){
+        return(
+            <>
+            </>
+        )
+    }
+    else{
+        const {listItem,src} = activeItem;
+        console.log(listItem,src);
         return(
             <>
                 <div id="screen">
-                    <div id="left">
-                        This is left Screen
-                    </div>
-                    <div id ="right">
-                        This is Right screen
-                    </div>
+                        <div id="left" >
+                        {list.map((item)=> (
+                            <li key={item.id} className={item.state ? "active" : ""}>
+                                {item.listItem}
+                                <i className="fa-solid fa-greater-than fa-2xs"></i>
+                            </li>
+                        ))}
+                        </div>
+                    {/* ): ( */}
+                        <div id ="right">
+                            {}
+                        </div>
                 </div>
             </>     
-            )
-        }
+            );
+    }     
     }
     
     export default Screen;
