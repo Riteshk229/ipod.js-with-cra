@@ -22,3 +22,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 1. NodeJS
 2. ReactJS
 
+### Image
+![image](https://github.com/Riteshk229/ipod.js-with-cra/assets/100128015/b2f9c51e-a0c3-470d-a857-376442427cd6)
+
+### LIVE
+https://mini-project-ipod.onrender.com
